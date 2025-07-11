@@ -1,12 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { ModeToggle as ThemeToggle } from "@/components/ThemeToggle";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 // import { ClerkAuthDialog } from '@/components/ui/clerk-auth-dialog';
 
-import { ThemeToggle } from "./ThemeToggle";
 
 export default function HeroSection() {
   return (
