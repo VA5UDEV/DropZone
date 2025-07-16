@@ -75,12 +75,21 @@ export async function POST(request: NextRequest) {
       ? `/droply/${userId}/folders/${parentId}`
       : `/droply/${userId}`;
 
-    const uploadResponse = await imagekit.upload({
-      file: fileBuffer,
-      fileName: uniqueFilename,
-      folder: folderPath,
-      useUniqueFileName: false,
-    });
+    let uploadResponse;
+    try {
+      uploadResponse = await imagekit.upload({
+        file: fileBuffer,
+        fileName: uniqueFilename,
+        folder: folderPath,
+        useUniqueFileName: false,
+      });
+    } catch (uploadErr) {
+      console.error("ImageKit upload failed:", uploadErr);
+      return NextResponse.json(
+        { error: "Upload to ImageKit failed" },
+        { status: 500 }
+      );
+    }
 
     const fileData = {
       name: originalFilename,
@@ -102,7 +111,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error uploading file:", error);
     return NextResponse.json(
-      { error: "Failed to upload file" },
+      {
+        error: "Failed to upload file",
+        details: error instanceof Error ? error.message : "Unknown",
+      },
       { status: 500 }
     );
   }
