@@ -22,7 +22,7 @@ export default function HeroSection() {
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/upload">
+          <Link href="/dashboard">
             <Button size="lg" className="gap-2">
               Get Started
               <ArrowRight className="size-4" />
