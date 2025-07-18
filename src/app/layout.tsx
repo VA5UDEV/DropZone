@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { Providers } from "./providers";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,18 +25,23 @@ export default function RootLayout({
         },
       }}
     >
-      <html lang="en" suppressHydrationWarning>
-        <body className="antialiased bg-background text-foreground">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Providers>{children}</Providers>
-          </ThemeProvider>
-        </body>
-      </html>
+        <html lang="en" suppressHydrationWarning>
+          <body className="antialiased bg-background text-foreground">
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Providers>
+                <main>
+                {children}
+                </main>
+                <Toaster />
+              </Providers>
+            </ThemeProvider>
+          </body>
+        </html>
     </ClerkProvider>
   );
 }
