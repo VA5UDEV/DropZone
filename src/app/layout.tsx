@@ -4,6 +4,7 @@ import { ThemeProvider } from "../components/ThemeProvider";
 import { Providers } from "./providers";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
+import { CornerPopover } from "@/components/CornerPopover";
 
 export const metadata: Metadata = {
   title: "Clerk Next.js Quickstart",
@@ -36,6 +37,7 @@ export default function RootLayout({
               <Providers>
                 <main>
                 {children}
+                <CornerPopover />
                 </main>
                 <Toaster />
               </Providers>
